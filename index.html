@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK 7</title>
+</head>
+<body>
+    <h1>TASK 5</h1>
+
+
+    <script>
+
+        //(a).Get all the countries from the Asia continent/region using the Filter function:
+
+        fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+            const asiaCountries = data.filter((country) =>
+            country.region.includes("Asia")
+            );
+            console.log(asiaCountries);
+        })
+        .catch((error) => console.log(error));
+
+        //(b).Get all the countries with a population of less than 2 lakhs using Filter function:
+
+        fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+            const lessThan2LakhCountries = data.filter(
+            (country) => country.population < 200000
+            );
+            console.log(lessThan2LakhCountries);
+        })
+        .catch((error) => console.log(error));
+
+        //(c).Print the following details name, capital, flag using forEach function:
+        fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach((country) =>
+            console.log(
+                `Name: ${country.name.common}, Capital: ${country.capital[0]}, Flag: ${country.flags.svg}`
+            )
+            );
+        })
+        .catch((error) => console.log(error));
+
+        //(d).Print the total population of countries using reduce function:
+
+        fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+            const totalPopulation = data.reduce(
+            (accumulator, country) => accumulator + country.population,
+            0
+            );
+            console.log(`Total population: ${totalPopulation}`);
+        })
+        .catch((error) => console.log(error));
+
+        //(e).Print the country which uses US Dollars as currency:
+
+        fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+            const usDollarCountries = data.filter((country) =>
+            country.currencies.USD ? true : false
+            );
+            console.log(usDollarCountries);
+        })
+        .catch((error) => console.log(error));
+    </script>
+</body>
+</html> 
